@@ -37,12 +37,16 @@ public class Login extends HttpServlet {
         try {
             String usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
-            if  (usuario.equals("admin") && senha.equals("123")) {
-                String url = response.encodeRedirectURL("/login-simples/logado.xhtml");
-                response.sendRedirect(url);
+            if  (request.getMethod().equalsIgnoreCase("post")) {
+                if  (usuario.equals("admin") && senha.equals("123")) {
+                    String url = response.encodeRedirectURL("/login-simples/logado.xhtml");
+                    response.sendRedirect(url);
+                }else{
+                    String url = response.encodeRedirectURL("/login-simples/login.xhtml");
+                    response.sendRedirect(url);
+                }
             }else{
-                String url = response.encodeRedirectURL("/login-simples/login.xhtml");
-                response.sendRedirect(url);
+                response.sendError(response.SC_METHOD_NOT_ALLOWED);
             }
 
         } finally {            
