@@ -37,6 +37,7 @@ public class Login extends HttpServlet {
         try {
             String usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
+            
             if  (request.getMethod().equalsIgnoreCase("post")) {
                 if  (usuario.equals("admin") && senha.equals("123")) {
                     String url = response.encodeRedirectURL("/login-simples/logado.xhtml");
